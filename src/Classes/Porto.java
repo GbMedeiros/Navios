@@ -1,0 +1,46 @@
+package Classes;
+
+public class Porto {
+    private Integer codigo;
+    private String nome;
+    private String pais;
+
+    public Porto() {
+    }
+
+
+    public Porto(int cod, String name, String country) {
+        codigo = cod;
+        nome = name;
+        pais = country;
+    }
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer c) {
+        codigo = c;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String n) {
+        nome = n;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String p) {
+        pais = p;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%d] %s - %S", codigo, nome, pais);
+    }
+}
