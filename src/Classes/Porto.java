@@ -4,6 +4,7 @@ public class Porto {
     private Integer codigo;
     private String nome;
     private String pais;
+    private Integer distancia;
 
     public Porto() {
     }
@@ -13,6 +14,15 @@ public class Porto {
         codigo = cod;
         nome = name;
         pais = country;
+        distancia = 0;
+    }
+
+    public Integer getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(Integer distancia) {
+        this.distancia = distancia;
     }
 
     public Integer getCodigo() {
@@ -41,6 +51,6 @@ public class Porto {
 
     @Override
     public String toString() {
-        return String.format("[%d] %s - %S", codigo, nome, pais);
+        return String.format("[%d] %-10s - %-10S", codigo, nome, pais);
     }
 }

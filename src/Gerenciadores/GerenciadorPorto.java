@@ -13,6 +13,8 @@ public class GerenciadorPorto {
     private Porto porto;
     private TreeMap<Integer, Porto> portos;
     private static GerenciadorPorto instance;
+    private Integer distancia = 0;
+
 
     private GerenciadorPorto() {
         portos = new TreeMap<>();
@@ -25,34 +27,44 @@ public class GerenciadorPorto {
         return instance;
     }
 
-    public void add(Porto porto) {
+    public Boolean add(Porto porto) {
         if (portos.containsKey(porto.getCodigo())) {
-            System.err.println("Aviso: Já existe um porto com o identificador indicado.");
+            System.err.println("Porto:" + porto.toString() + " já cadastrado.\")");
+            return false;
         }
+        porto.setDistancia(distancia);
         portos.put(porto.getCodigo(), porto);
+        distancia += 100;
+        return true;
     }
 
-    public Porto buscar(String porto) {
+    public Porto buscar(int porto) {
         return portos.get(porto);
     }
 
-    public Boolean lerArquivo(String name) {
+    public Porto buscar(String nomePorto) {
+        for (Porto p : portos.values()) {
+            if (nomePorto.equals(p.getNome())) return p;
+        }
+        return null;
+    }
+
+
+    public void lerArquivo(String name) {
         Path file = Paths.get(name);
         try (BufferedReader reader = Files.newBufferedReader(file, Charset.forName("utf8"))) {
             String line = null;
-                while ((line = reader.readLine())!= null) {
-                    String dados[] = line.split(",");
-                    Integer cod = Integer.parseInt(dados[0]);
-                    String nome = dados[1];
-                    String pais = dados[2];
-                    Porto p = new Porto(cod, nome, pais);
-                    add(p);
+            while ((line = reader.readLine()) != null) {
+                String dados[] = line.split(",");
+                Integer cod = Integer.parseInt(dados[0]);
+                String nome = dados[1];
+                String pais = dados[2];
+                Porto p = new Porto(cod, nome, pais);
+                add(p);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        ;
-        return true;
     }
 
     @Override

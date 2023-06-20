@@ -10,7 +10,7 @@ public class Navio {
     }
 
     public Navio(String nome, Double velo, Double auto, Double custo) {
-        name = nome;
+        name = nome.toLowerCase();
         velocidade = velo;
         autonimia = auto;
         custoPorMilhaBasico = custo;
@@ -46,5 +46,10 @@ public class Navio {
 
     public void setCustoPorMilhaBasico(Double custoPorMilhaBasico) {
         this.custoPorMilhaBasico = custoPorMilhaBasico;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s Velocidade     || Max: %f (nós)    || Autonimia %f     || Custo Por Milha: %f", name, velocidade, autonimia, custoPorMilhaBasico);
     }
 }

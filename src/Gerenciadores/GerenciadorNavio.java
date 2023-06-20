@@ -1,6 +1,7 @@
 package Gerenciadores;
 
 import Classes.Navio;
+import Classes.Porto;
 
 import java.io.BufferedReader;
 import java.nio.charset.Charset;
@@ -8,13 +9,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class GerenciadorNavio {
-    private HashMap<String, Navio> navios;
+    private TreeMap<String, Navio> navios;
     private static GerenciadorNavio instance;
 
     private GerenciadorNavio() {
-        navios = new HashMap<>();
+        navios = new TreeMap<>();
     }
 
     public static GerenciadorNavio getInstance() {
@@ -24,16 +26,17 @@ public class GerenciadorNavio {
         return instance;
     }
 
-    public void add(Navio navio) {
-        if (navios.get(navio) != null) {
+    public Boolean add(Navio navio) {
+        if (navios.containsKey(navio.getName())) {
             System.err.println("Navio: " + navio.toString() + " já cadastrado.");
-        } else {
-            navios.put(navio.getName(), navio);
+            return false;
         }
+        navios.put(navio.getName(), navio);
+        return true;
     }
 
     public Navio buscar(String name) {
-        return navios.get(name);
+        return navios.get(name.toLowerCase());
     }
 
     public void lerArquivos(String file) {
@@ -52,8 +55,17 @@ public class GerenciadorNavio {
                 add(n);
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("* Nao foi possivel ler os navios");
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder("\n___________ Navios _____________\n");
+        for (Navio n : navios.values()) {
+            s.append(n).append("\n");
+        }
+        return s.toString();
     }
 
 }
