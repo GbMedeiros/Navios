@@ -42,7 +42,7 @@ public class Frete {
         else precoPeso = carga.getPeso() * 2.0;
 
         Double custoRegiao;
-        if (origem.getPais().equalsIgnoreCase("brasil") && destino.getPais().equalsIgnoreCase("brasil")) {
+        if (origem.getPais().trim().equalsIgnoreCase("brasil") && destino.getPais().trim().equalsIgnoreCase("brasil")) {
             custoRegiao = 100000.00;
         } else custoRegiao = 50000.00;
 
@@ -57,7 +57,7 @@ public class Frete {
 
     @Override
     public String toString() {
-        return String.format("Cleinte: %-10s%n Carga:%-10s%n Navio: %-10s%n Origem: %-10s%n Destino: %-10s%n Prioridade: %-10s%n ------ PRECO FRETE: %.2f%n -----------Status:%s ", cliente, carga, navio.getName().toUpperCase(), origem, destino, prioridade, preco, carga.getSituacao());
+        return String.format("Cliente: %-10s%n Carga:%-10s%n Navio: %-10s%n Origem: %-10s%n Destino: %-10s%n Prioridade: %-10s%n ------ PRECO FRETE: %.2f%n -----------Status:%s ", cliente, carga, navio.getName().toUpperCase(), origem, destino, prioridade, preco, carga.getSituacao());
     }
 
 }

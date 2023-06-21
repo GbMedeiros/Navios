@@ -33,9 +33,9 @@ public class App {
 
         Frete frete1 = new Frete(111, "Mare Brilhante", "b");
         Frete frete2 = new Frete(222, "Vento Sereno", "r");
-        Frete frete3 = new Frete(333, "Esperança Azul", "r");
+        Frete frete3 = new Frete(555, "Esperança Azul", "r");
         Frete frete4 = new Frete(444, "Rapido Albatroz", "r");
-        Frete frete5 = new Frete(555, "Navegante Eterno", "b");
+        Frete frete5 = new Frete(333, "Navegante Eterno", "b");
 
         System.out.println(frete1);
         System.out.println("\n-------------------");
@@ -49,12 +49,12 @@ public class App {
 
         System.out.println("\n-------------------");
         frete2.entregue();
-        frete4.entregue();
+        frete5.entregue();
 
         System.out.println("\n\n\n\n    Frete 2 e 4 foram entregues pelos metodo [public final void entregue()]\n\n");
         System.out.println(frete2);
         System.out.println("\n-------------------");
-        System.out.println(frete4);
+        System.out.println(frete5);
         System.out.println("\n-------------------");
 
 

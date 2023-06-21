@@ -12,9 +12,7 @@ public class Carga {
     private Cliente cliente;
     private Integer codigo;
     private Integer peso;
-
     private Double valorDeclarado;
-
     private Integer tempoMaximo;
     private TipoCarga tipoCarga;
     private Porto origem;
